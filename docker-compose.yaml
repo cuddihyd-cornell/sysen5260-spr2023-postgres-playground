@@ -1,0 +1,17 @@
+services:
+  pgserver:
+    image: postgres
+    volumes:
+      - ./:/opt/app
+    working_dir: /opt/app
+    environment:
+      - POSTGRES_PASSWORD=secret
+    command: "postgres"
+  pgclient:
+    image: postgres
+    volumes:
+      - ./:/opt/app
+    working_dir: /opt/app
+    environment:
+      - POSTGRES_PASSWORD=secret
+    command: "psql -h pgserver -U postgres"
